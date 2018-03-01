@@ -16,7 +16,7 @@ namespace Microsoft.ApplicationInsights.ExceptionTracking.AspNet4.Tests
         [Fact]
         public void InjectionNoopOnAspNet4()
         {
-            Injector.InjectInternal();
+            Injector.ForceInject();
             Assert.False(GlobalFilters.Filters.Any());
             Assert.False(GlobalConfiguration.Configuration.Filters.Any());
         }

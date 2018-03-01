@@ -1,13 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <ProjectGuid>{5FF3B506-1E9F-4F92-BEAA-BFD42ADA5528}</ProjectGuid>
-    <AssemblyName>Microsoft.ApplicationInsights.ExceptionTracking.AspNet4.Tests</AssemblyName>
-    <RootNamespace>Microsoft.ApplicationInsights.ExceptionTracking.AspNet4.Tests</RootNamespace>
-    <AuthenticodeSignTarget>true</AuthenticodeSignTarget>
     <TargetFrameworks>net461</TargetFrameworks>
-    <DebugType>pdbonly</DebugType>
-    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 
   <ItemGroup>

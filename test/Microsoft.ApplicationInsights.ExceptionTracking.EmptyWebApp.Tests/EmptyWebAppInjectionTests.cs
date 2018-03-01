@@ -7,7 +7,7 @@ namespace Microsoft.ApplicationInsights.ExceptionTracking.EmptyWebApp.Tests
         [Fact]
         public void InjectionDoesNotThrow()
         {
-            Injector.InjectInternal();
+            Injector.ForceInject();
         }
     }
 }

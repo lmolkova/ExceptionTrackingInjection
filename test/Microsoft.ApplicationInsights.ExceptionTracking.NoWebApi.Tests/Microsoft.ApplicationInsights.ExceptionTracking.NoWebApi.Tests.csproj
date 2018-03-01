@@ -1,13 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <ProjectGuid>{B80F1346-C98F-4B57-9C07-F66350772B33}</ProjectGuid>
-    <AssemblyName>Microsoft.ApplicationInsights.ExceptionTracking.NoWebApi.Tests</AssemblyName>
-    <RootNamespace>Microsoft.ApplicationInsights.ExceptionTracking.NoWebApi.Tests</RootNamespace>
-    <AuthenticodeSignTarget>true</AuthenticodeSignTarget>
     <TargetFrameworks>net461</TargetFrameworks>
-    <DebugType>pdbonly</DebugType> 
-    <DebugSymbols>true</DebugSymbols> 
   </PropertyGroup>
 
   <ItemGroup>

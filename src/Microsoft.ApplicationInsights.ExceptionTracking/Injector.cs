@@ -32,46 +32,54 @@ namespace Microsoft.ApplicationInsights.ExceptionTracking
                 {
                     if (!init)
                     {
-                        try
-                        {
-                            InjectInternal();
-                            init = true;
-                        }
-                        catch (Exception e)
-                        {
-                            InjectorEventSource.Log.UnknownError(e.ToString());
-                        }
+                        InjectInternal();
+                        init = true;
                     }
                 }
             }
         }
 
-        internal static void InjectInternal()
+        //todo: not browsable, warning, tests only
+        public static void ForceInject()
         {
-            InjectorEventSource.Log.InjectionStarted();
+            InjectInternal();
+            init = true;
+        }
 
-            var telemetryClientType = GetTypeOrFail("Microsoft.ApplicationInsights.TelemetryClient, Microsoft.ApplicationInsights");
-            var exceptionTelemetryType = GetTypeOrFail("Microsoft.ApplicationInsights.DataContracts.ExceptionTelemetry, Microsoft.ApplicationInsights");
-            var trackExceptionMethod = GetMethodOrFail(telemetryClientType, "TrackException", new[] { exceptionTelemetryType });
-            var exceptionTelemetryCtor = GetConstructorOrFail(exceptionTelemetryType, new[] { typeof(Exception) });
+        private static void InjectInternal()
+        {
+            try
+            {
+                InjectorEventSource.Log.InjectionStarted();
 
-            var telemetryClient = Activator.CreateInstance(telemetryClientType);
-            var assemblyName = new AssemblyName(AssemblyName);
-            var assemblyBuilder = AppDomain.CurrentDomain.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run);
+                var telemetryClientType = GetTypeOrFail("Microsoft.ApplicationInsights.TelemetryClient, Microsoft.ApplicationInsights");
+                var exceptionTelemetryType = GetTypeOrFail("Microsoft.ApplicationInsights.DataContracts.ExceptionTelemetry, Microsoft.ApplicationInsights");
+                var trackExceptionMethod = GetMethodOrFail(telemetryClientType, "TrackException", new[] { exceptionTelemetryType });
+                var exceptionTelemetryCtor = GetConstructorOrFail(exceptionTelemetryType, new[] { typeof(Exception) });
 
-            var moduleBuilder = assemblyBuilder.DefineDynamicModule(AssemblyName);
+                var telemetryClient = Activator.CreateInstance(telemetryClientType);
+                var assemblyName = new AssemblyName(AssemblyName);
+                var assemblyBuilder = AppDomain.CurrentDomain.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run);
 
-            AddMvcFilter(telemetryClient,
-                telemetryClientType,
-                moduleBuilder,
-                exceptionTelemetryCtor,
-                trackExceptionMethod);
+                var moduleBuilder = assemblyBuilder.DefineDynamicModule(AssemblyName);
 
-            AddWebApiExceptionLogger(telemetryClient,
-                telemetryClientType,
-                moduleBuilder,
-                exceptionTelemetryCtor,
-                trackExceptionMethod);
+                AddMvcFilter(telemetryClient,
+                    telemetryClientType,
+                    moduleBuilder,
+                    exceptionTelemetryCtor,
+                    trackExceptionMethod);
+
+                AddWebApiExceptionLogger(telemetryClient,
+                    telemetryClientType,
+                    moduleBuilder,
+                    exceptionTelemetryCtor,
+                    trackExceptionMethod);
+
+            }
+            catch (Exception e)
+            {
+                InjectorEventSource.Log.UnknownError(e.ToString());
+            }
 
             InjectorEventSource.Log.InjectionCompleted();
         }

@@ -35,7 +35,7 @@ namespace Microsoft.ApplicationInsights.ExceptionTracking.Tests
         {
             Assert.False(GlobalConfiguration.Configuration.Services.GetServices(typeof(IExceptionLogger)).Any());
 
-            Injector.InjectInternal();
+            Injector.ForceInject();
 
             var webApiExceptionLoggers = GlobalConfiguration.Configuration.Services.GetServices(typeof(IExceptionLogger)).ToList();
             Assert.Single(webApiExceptionLoggers);
@@ -61,7 +61,7 @@ namespace Microsoft.ApplicationInsights.ExceptionTracking.Tests
             GlobalConfiguration.Configuration.Services.Add(typeof(IExceptionLogger), new WebApiInjectedLogger());
             Assert.Single(GlobalConfiguration.Configuration.Services.GetServices(typeof(IExceptionLogger)));
 
-            Injector.InjectInternal();
+            Injector.ForceInject();
 
             var loggers = GlobalConfiguration.Configuration.Services.GetServices(typeof(IExceptionLogger)).ToList();
             Assert.Single(loggers);

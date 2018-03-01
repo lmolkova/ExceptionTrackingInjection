@@ -1,13 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <ProjectGuid>{17B3433E-629D-4628-9F50-45AE4EDD740C}</ProjectGuid>
-    <AssemblyName>Microsoft.ApplicationInsights.ExceptionTracking.EmptyWebApp.Tests</AssemblyName>
-    <RootNamespace>Microsoft.ApplicationInsights.ExceptionTracking.EmptyWebApp.Tests</RootNamespace>
-    <AuthenticodeSignTarget>true</AuthenticodeSignTarget>
     <TargetFrameworks>net461</TargetFrameworks>
-    <DebugType>pdbonly</DebugType>
-    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 
   <ItemGroup>

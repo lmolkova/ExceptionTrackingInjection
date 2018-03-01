@@ -31,7 +31,7 @@ namespace Microsoft.ApplicationInsights.ExceptionTracking.Tests
         [Fact]
         public void MvcExceptionFilterIsInjectedAndTracksException()
         {
-            Injector.InjectInternal();
+            Injector.ForceInject();
 
             var mvcExceptionFilters = GlobalFilters.Filters;
             Assert.Single(mvcExceptionFilters);
@@ -56,7 +56,7 @@ namespace Microsoft.ApplicationInsights.ExceptionTracking.Tests
             GlobalFilters.Filters.Add(new MvcInjectedFilter());
             Assert.Single(GlobalFilters.Filters);
 
-            Injector.InjectInternal();
+            Injector.ForceInject();
 
             var filters = GlobalFilters.Filters;
             Assert.Single(filters);
@@ -66,7 +66,7 @@ namespace Microsoft.ApplicationInsights.ExceptionTracking.Tests
         [Fact]
         public void MvcExceptionFilterNoopIfCustomErrorsIsFalse()
         {
-            Injector.InjectInternal();
+            Injector.ForceInject();
 
             var mvcExceptionFilters = GlobalFilters.Filters;
             Assert.Single(mvcExceptionFilters);
@@ -84,7 +84,7 @@ namespace Microsoft.ApplicationInsights.ExceptionTracking.Tests
         [Fact]
         public void MvcExceptionFilterNoopIfExceptionIsNull()
         {
-            Injector.InjectInternal();
+            Injector.ForceInject();
 
             var mvcExceptionFilters = GlobalFilters.Filters;
             Assert.Single(mvcExceptionFilters);
