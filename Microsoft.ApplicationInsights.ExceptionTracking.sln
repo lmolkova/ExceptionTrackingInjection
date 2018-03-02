@@ -1,25 +1,29 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiAndMvc", "TestApps\WebApiAndMvc\WebApiAndMvc.csproj", "{6AD47D8F-C52F-4E72-9BE7-CACD0A4B29EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.ApplicationInsights.ExceptionTracking", "src\Microsoft.ApplicationInsights.ExceptionTracking\Microsoft.ApplicationInsights.ExceptionTracking.csproj", "{CE202D98-49E5-4354-A4BE-D824B94F57C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.ApplicationInsights.ExceptionTracking", "src\Microsoft.ApplicationInsights.ExceptionTracking\Microsoft.ApplicationInsights.ExceptionTracking.csproj", "{CE202D98-49E5-4354-A4BE-D824B94F57C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.ApplicationInsights.ExceptionTracking.Tests", "test\Microsoft.ApplicationInsights.ExceptionTracking.Tests\Microsoft.ApplicationInsights.ExceptionTracking.Tests.csproj", "{00B2DCE6-F573-49BF-8158-11D4D56042D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.ApplicationInsights.ExceptionTracking.Tests", "test\Microsoft.ApplicationInsights.ExceptionTracking.Tests\Microsoft.ApplicationInsights.ExceptionTracking.Tests.csproj", "{00B2DCE6-F573-49BF-8158-11D4D56042D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.ApplicationInsights.ExceptionTracking.NoWebApi.Tests", "test\Microsoft.ApplicationInsights.ExceptionTracking.NoWebApi.Tests\Microsoft.ApplicationInsights.ExceptionTracking.NoWebApi.Tests.csproj", "{B80F1346-C98F-4B57-9C07-F66350772B33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.ApplicationInsights.ExceptionTracking.NoWebApi.Tests", "test\Microsoft.ApplicationInsights.ExceptionTracking.NoWebApi.Tests\Microsoft.ApplicationInsights.ExceptionTracking.NoWebApi.Tests.csproj", "{B80F1346-C98F-4B57-9C07-F66350772B33}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestApps", "TestApps", "{61BDDF96-A8E3-4C9E-98D8-07D4DD8B8499}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{913E4DF6-63F7-4337-9ED0-BE4B21076FD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.ApplicationInsights.ExceptionTracking.NoMvc.Tests", "test\Microsoft.ApplicationInsights.ExceptionTracking.NoMvc.Tests\Microsoft.ApplicationInsights.ExceptionTracking.NoMvc.Tests.csproj", "{4622E305-1C2E-49EF-B5F7-E828FD52ECB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.ApplicationInsights.ExceptionTracking.NoMvc.Tests", "test\Microsoft.ApplicationInsights.ExceptionTracking.NoMvc.Tests\Microsoft.ApplicationInsights.ExceptionTracking.NoMvc.Tests.csproj", "{4622E305-1C2E-49EF-B5F7-E828FD52ECB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.ApplicationInsights.ExceptionTracking.EmptyWebApp.Tests", "test\Microsoft.ApplicationInsights.ExceptionTracking.EmptyWebApp.Tests\Microsoft.ApplicationInsights.ExceptionTracking.EmptyWebApp.Tests.csproj", "{17B3433E-629D-4628-9F50-45AE4EDD740C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.ApplicationInsights.ExceptionTracking.EmptyWebApp.Tests", "test\Microsoft.ApplicationInsights.ExceptionTracking.EmptyWebApp.Tests\Microsoft.ApplicationInsights.ExceptionTracking.EmptyWebApp.Tests.csproj", "{17B3433E-629D-4628-9F50-45AE4EDD740C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.ApplicationInsights.ExceptionTracking.AspNet4.Tests", "test\Microsoft.ApplicationInsights.ExceptionTracking.AspNet4.Tests\Microsoft.ApplicationInsights.ExceptionTracking.AspNet4.Tests.csproj", "{5FF3B506-1E9F-4F92-BEAA-BFD42ADA5528}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.ApplicationInsights.ExceptionTracking.AspNet4.Tests", "test\Microsoft.ApplicationInsights.ExceptionTracking.AspNet4.Tests\Microsoft.ApplicationInsights.ExceptionTracking.AspNet4.Tests.csproj", "{5FF3B506-1E9F-4F92-BEAA-BFD42ADA5528}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.ApplicationInsights.ExceptionTracking.Signing", "sign\Microsoft.ApplicationInsights.ExceptionTracking.Signing\Microsoft.ApplicationInsights.ExceptionTracking.Signing.csproj", "{362C5C03-D475-4392-AEA3-4888C8BF149A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sign", "sign", "{0452094B-2B07-4244-8988-BE4194E215B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +59,10 @@ Global
 		{5FF3B506-1E9F-4F92-BEAA-BFD42ADA5528}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FF3B506-1E9F-4F92-BEAA-BFD42ADA5528}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FF3B506-1E9F-4F92-BEAA-BFD42ADA5528}.Release|Any CPU.Build.0 = Release|Any CPU
+		{362C5C03-D475-4392-AEA3-4888C8BF149A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{362C5C03-D475-4392-AEA3-4888C8BF149A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{362C5C03-D475-4392-AEA3-4888C8BF149A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{362C5C03-D475-4392-AEA3-4888C8BF149A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +74,7 @@ Global
 		{4622E305-1C2E-49EF-B5F7-E828FD52ECB8} = {913E4DF6-63F7-4337-9ED0-BE4B21076FD4}
 		{17B3433E-629D-4628-9F50-45AE4EDD740C} = {913E4DF6-63F7-4337-9ED0-BE4B21076FD4}
 		{5FF3B506-1E9F-4F92-BEAA-BFD42ADA5528} = {913E4DF6-63F7-4337-9ED0-BE4B21076FD4}
+		{362C5C03-D475-4392-AEA3-4888C8BF149A} = {0452094B-2B07-4244-8988-BE4194E215B4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6579A94C-6168-41CD-8703-BA82B1009322}

@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\MicroBuild.Core.0.2.0\build\MicroBuild.Core.props" Condition="Exists('..\..\packages\MicroBuild.Core.0.2.0\build\MicroBuild.Core.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{362C5C03-D475-4392-AEA3-4888C8BF149A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Microsoft.ApplicationInsights.ExceptionTracking.Signing</RootNamespace>
+    <AssemblyName>Microsoft.ApplicationInsights.ExceptionTracking.Signing</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>CS2008</NoWarn>
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>None</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\MicroBuild.Core.0.2.0\build\MicroBuild.Core.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\MicroBuild.Core.0.2.0\build\MicroBuild.Core.props'))" />
+    <Error Condition="!Exists('..\..\packages\MicroBuild.Core.0.2.0\build\MicroBuild.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\MicroBuild.Core.0.2.0\build\MicroBuild.Core.targets'))" />
+  </Target>
+  <Import Project="..\..\packages\MicroBuild.Core.0.2.0\build\MicroBuild.Core.targets" Condition="Exists('..\..\packages\MicroBuild.Core.0.2.0\build\MicroBuild.Core.targets')" />
+  <!--
+    Remove TraceEvent native binaries that are not really needed-the Etw input Nuget package depends on TraceEvent Nuget package
+    and TraceEvent Nuget package will take care of installing them into user's Project.
+  -->
+  <Target Name="RemoveTraceEventNativeBinaries" AfterTargets="Build">
+    <RemoveDir Directories="$(OutputPath)x86;$(OutputPath)amd64" />
+  </Target>
+  <!--
+    The signing task expect the assemblies to sign under some certain folder. So before signing, we move the assemblies to
+    the expected folder. After signing, we move the signed assemblies back to its original place for nuget packaging.
+  -->
+  <Target Name="MoveAssembliesBeforeSigning" Condition="'$(SignType)'!=''" BeforeTargets="SignFiles">
+    <ItemGroup>
+      <FullAssemblies Include="..\..\src\Microsoft.ApplicationInsights.ExceptionTracking\bin\$(Configuration)\net45\Microsoft.ApplicationInsights.ExceptionTracking.dll;" />
+      <FullAssemblies Include="..\..\src\Microsoft.ApplicationInsights.ExceptionTracking\bin\$(Configuration)\net45\Microsoft.ApplicationInsights.ExceptionTracking.pdb;" />
+    </ItemGroup>
+    <Move SourceFiles="@(FullAssemblies)" DestinationFolder="$(OutputPath)\full" />
+  </Target>
+  <ItemGroup>
+    <!--We can't use wildcard here since it's expanded before build, which is empty.-->
+    <FilesToSign Include="$(OutputPath)\full\Microsoft.ApplicationInsights.ExceptionTracking.dll;">
+      <Authenticode>Microsoft</Authenticode>
+      <StrongName>StrongName</StrongName>
+    </FilesToSign>
+  </ItemGroup>
+  <Target Name="CopySignedAssembliesBack" Condition="'$(SignType)'!=''" AfterTargets="SignFiles">
+    <Copy SourceFiles="$(OutputPath)\full\Microsoft.ApplicationInsights.ExceptionTracking.dll" DestinationFolder="..\..\src\Microsoft.ApplicationInsights.ExceptionTracking\bin\$(Configuration)\net45" />
+    <Copy SourceFiles="$(OutputPath)\full\Microsoft.ApplicationInsights.ExceptionTracking.pdb" DestinationFolder="..\..\src\Microsoft.ApplicationInsights.ExceptionTracking\bin\$(Configuration)\net45" />
+  </Target>
+</Project>

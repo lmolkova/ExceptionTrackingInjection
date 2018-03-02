@@ -9,6 +9,13 @@
 
     <DebugType>pdbonly</DebugType>
     <DebugSymbols>true</DebugSymbols>
+    <Authors>Microsoft</Authors>
+    <Company>Microsoft</Company>
+    <Description>Package provides extenstion for ApplcationInsights Web SDK to inject ASP.NET MVC 5 and ASP.NET WebApi2 exception handlers into the application.</Description>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageLicenseUrl>https://www.microsoft.com/web/webpi/eula/net_library_eula_enu.htm</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/Microsoft/ApplicationInsights-ExceptionTracking</PackageProjectUrl>
+    <PackageTags>Microsoft;Diagnostics;ApplicationInsights;Exceptions</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
